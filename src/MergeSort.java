@@ -52,9 +52,6 @@ public class MergeSort {
             j++;
             k++;
         }
-
-        System.out.println("workArray array:");
-        printArray(workArray);
     }
 
     private static void sortTwoStringsArray(String[] array){
@@ -89,7 +86,6 @@ public class MergeSort {
     }
 
     public static void printArray(String[] input){
-        System.out.println("Printing array:");
         for (String s:input){
             System.out.print(s+" ");
         }

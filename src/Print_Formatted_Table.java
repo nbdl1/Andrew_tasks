@@ -36,7 +36,11 @@ Additional part:
         doIt(input,10);
         System.out.println("\n----------------------");
 
-        String[] sortedArray = MergeSort.doSort(new String[]{"5","9","4","8","7","6","2","3","1"});
+        String[] arrayToSort = new String[]{"5","9","4","8","7","6","2","3","1"};
+        System.out.println("Array to sort:");
+        MergeSort.printArray(arrayToSort);
+        String[] sortedArray = MergeSort.doSort(arrayToSort);
+        System.out.println("Sorted Array:");
         MergeSort.printArray(sortedArray);
     }
 
