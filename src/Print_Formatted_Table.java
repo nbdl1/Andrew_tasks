@@ -1,4 +1,5 @@
 import javax.sound.midi.Soundbank;
+import java.util.Date;
 
 public class Print_Formatted_Table {
     public static int arrayPairCount = 0;
@@ -36,12 +37,45 @@ Additional part:
         doIt(input,10);
         System.out.println("\n----------------------");
 
-        String[] arrayToSort = new String[]{"5","9","4","8","7","6","2","3","1"};
+        String[] arrayToSort = new String[]{"5","9","4","8","7","6","2","3","1","5","9","4","8","7","6","2","3","1","5","9","4","8","7","6","2","3","1","5","9","4","8","7","6","2","3","1"};
         System.out.println("Array to sort:");
         MergeSort.printArray(arrayToSort);
-        String[] sortedArray = MergeSort.doSort(arrayToSort);
+        Long startDate = System.currentTimeMillis();
+        String[] sortedMergedArray=new String[arrayToSort.length];
+        for(int i =0;i<1000;i++){
+            sortedMergedArray = MergeSort.doSort(arrayToSort);
+        }
+
+        Long finishDate = System.currentTimeMillis();
+        Long duration = finishDate-startDate;
+        System.out.println("Merge sort took "+duration+" ms.");
         System.out.println("Sorted Array:");
-        MergeSort.printArray(sortedArray);
+        MergeSort.printArray(sortedMergedArray);
+
+        //insertion sort
+        startDate = System.currentTimeMillis();
+        String[] sortedInsertionArray = new String[arrayToSort.length];
+        for(int i =0;i<1000;i++){
+            sortedInsertionArray = InsertionSort.doSort(arrayToSort);
+        }
+        finishDate = System.currentTimeMillis();
+        duration = finishDate-startDate;
+        System.out.println("Insertion sort took "+duration+" ms.");
+        System.out.println("Sorted Array:");
+        MergeSort.printArray(sortedInsertionArray);
+
+        //bubble sort
+        startDate = System.currentTimeMillis();
+        String[] sortedBubbleArray = new String[arrayToSort.length];
+        for(int i =0;i<1000;i++){
+            sortedBubbleArray = BubbleSort.doSort(arrayToSort);
+        }
+        finishDate = System.currentTimeMillis();
+        duration = finishDate-startDate;
+        System.out.println("Bubble sort took "+duration+" ms.");
+        System.out.println("Sorted Array:");
+        MergeSort.printArray(sortedBubbleArray);
+
     }
 
     private static void doIt(String[] input,int columns) {
@@ -79,6 +113,4 @@ Additional part:
         }
         return maxLength;
     }
-
-
 }

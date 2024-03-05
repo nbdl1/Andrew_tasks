@@ -1,11 +1,15 @@
 import org.w3c.dom.ls.LSOutput;
 
+import java.util.Date;
+
 public class MergeSort {
 
     public static String[] doSort(String[] inputArray){
+
         String[] sortedArray = new String[inputArray.length];
         copyArray(inputArray,0, inputArray.length,0,sortedArray.length,sortedArray);
         splitArrayAndMergeSortedParts(sortedArray,0,sortedArray.length,inputArray);
+
         return sortedArray;
     }
 
