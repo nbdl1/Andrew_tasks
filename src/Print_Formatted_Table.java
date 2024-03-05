@@ -35,7 +35,9 @@ Additional part:
         System.out.println("\n----------------------");
         doIt(input,10);
         System.out.println("\n----------------------");
-        //doIt(sortMerge(new String[]{"5","1","4","2"}));
+
+        String[] sortedArray = MergeSort.doSort(new String[]{"5","9","4","8","7","6","2","3","1"});
+        MergeSort.printArray(sortedArray);
     }
 
     private static void doIt(String[] input,int columns) {
@@ -74,85 +76,5 @@ Additional part:
         return maxLength;
     }
 
-    /////todo Implement MergeSort algorithm
-    private static String[] sortMerge(String[] inputArray){
-        String[] workArray=new String[inputArray.length];
-        copyArray(inputArray,0, inputArray.length,workArray);
-        splitArrayAndMergeSortedParts(workArray,0,workArray.length,inputArray);
-        return inputArray;
-    }
-    private static void splitArrayAndMergeSortedParts(String[] workArray,int from,int to,String[] resultArray){
-        if(to-from<=1){return;}
-        String[] leftArray=new String[workArray.length/2+workArray.length%2];
-        //System.out.println("leftArray.length = "+leftArray.length);
-        copyArray(workArray,0,workArray.length/2+workArray.length%2,leftArray);
-        //System.out.println("leftArray.length after copy = "+leftArray.length);
-        String[] rightArray=new String[workArray.length/2];
-       // System.out.println("rightArray.length = "+rightArray.length);
-        copyArray(workArray,workArray.length/2+workArray.length%2,workArray.length,rightArray);
-       // System.out.println("rightArray.length after copy = "+leftArray.length);
-        //System.out.println("leftArray.length = "+leftArray.length);
-        //System.out.println("workArray.length = "+workArray.length);
-        if(leftArray.length>2){
-            splitArrayAndMergeSortedParts(leftArray,from,to/2+to%2,resultArray);
-        }else{
-            System.out.println("leftArray size is = "+leftArray.length);
-            for(String s: leftArray){
-                System.out.print(s+"\s");
-            }
-            sortTwoStringsArray(leftArray);
-            copyArray(leftArray,arrayPairCount,arrayPairCount+2,resultArray);
-            arrayPairCount=arrayPairCount+2;
-            System.out.print("Result Array at the moment is: ");
-            for(String s: resultArray){
-                System.out.print(s+"\s");
-            }
-            splitArrayAndMergeSortedParts(workArray,from+2,to,resultArray);
-        }
 
-        if(rightArray.length>2){
-            splitArrayAndMergeSortedParts(rightArray,(to/2+to%2)-1,to,resultArray);
-        }else{
-            sortTwoStringsArray(rightArray);
-            copyArray(rightArray,arrayPairCount,arrayPairCount+1,resultArray);
-            arrayPairCount=arrayPairCount+2;
-            System.out.print("Result Array at the moment is: ");
-            for(String s: resultArray){
-                System.out.print(s+"\s");
-            }
-            splitArrayAndMergeSortedParts(workArray,from+2,to,resultArray);
-        }
-    }
-
-    private static void sortTwoStringsArray(String[] array){
-        if(array.length!=2){return;}
-        String workingString;
-        if(array[0].compareTo(array[1])>0){
-            workingString=array[0];
-            array[0]=array[1];
-            array[1]=workingString;
-            System.out.println("Sorted array pair is "+array[0]+" and "+array[1]);
-        }
-    }
-
-    private static void copyArray(String[] source,int from,int to,String[] dest){
-        //System.out.println("source length "+source.length);
-       // System.out.println("dest length "+dest.length);
-       // System.out.println("from = "+from);
-       // System.out.println("to = "+to);
-        System.out.println("Source is ");
-        for (String s:source){
-            System.out.print(s+" ");
-        }
-        System.out.println("dest is ");
-        for (String s:dest){
-            System.out.print(s+" ");
-        }
-        for(int i=0;i<dest.length-to;i++){
-            System.out.println("source[from] "+source[from]);
-            System.out.println("dest[i] "+dest[i]);
-            dest[i]=source[from];
-            from++;
-        }
-    }
 }
